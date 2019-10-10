@@ -15,12 +15,19 @@ class SwitchHeaderButton extends Component {
 
   constructor(props) {
     super(props);
+
+    // TODO(Yash): Learn more why this is needed.
+    this.callParent = this.callParent.bind(this);
+  }
+
+  callParent(e) {
+    this.props.updateFunc(this.props.switchSelector);
   }
 
   render(){
     return(
       <div>
-        <button onClick={this.props.updateFunc}>
+        <button onClick={this.callParent}>
             Hello {this.props.switchSelector}!
         </button>
       </div>
@@ -30,8 +37,8 @@ class SwitchHeaderButton extends Component {
 
 class YashApp extends Component {
 
-  printUpdate() {
-    console.log("Button clicked!");
+  printUpdate(something) {
+    console.log("Button clicked!: ", something);
   }
 
   render(){
