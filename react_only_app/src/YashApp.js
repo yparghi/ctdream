@@ -5,7 +5,7 @@ class SwitchableHeader extends Component {
   render(){
     return(
       <div>
-        <h3> Hello, World! </h3>
+        <h3>Hello, {this.props.displayName}!</h3>
       </div>
     );
   }
@@ -37,8 +37,22 @@ class SwitchHeaderButton extends Component {
 
 class YashApp extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        displayName: "Uninitialized",
+    };
+
+    // TODO(Yash): Understand better why this is needed.
+    this.printUpdate = this.printUpdate.bind(this);
+  }
+
   printUpdate(something) {
     console.log("Button clicked!: ", something);
+    this.setState(state => ({
+      displayName: something,
+    }));
   }
 
   render(){
@@ -47,7 +61,7 @@ class YashApp extends Component {
         <SwitchHeaderButton switchSelector="Mangoes" updateFunc={this.printUpdate}/>
         <SwitchHeaderButton switchSelector="Apples" updateFunc={this.printUpdate}/>
         <SwitchHeaderButton switchSelector="Kiwis" updateFunc={this.printUpdate}/>
-        <SwitchableHeader />
+        <SwitchableHeader displayName={this.state.displayName}/>
       </div>
     );
   }
