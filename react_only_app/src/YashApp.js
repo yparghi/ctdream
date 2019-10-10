@@ -20,19 +20,26 @@ class SwitchHeaderButton extends Component {
   render(){
     return(
       <div>
-        <button>Hello {this.props.switchSelector}!</button>
+        <button onClick={this.props.updateFunc}>
+            Hello {this.props.switchSelector}!
+        </button>
       </div>
     );
   }
 }
 
 class YashApp extends Component {
+
+  printUpdate() {
+    console.log("Button clicked!");
+  }
+
   render(){
     return(
       <div className="YashAppClass">
-        <SwitchHeaderButton switchSelector="Mangoes"/>
-        <SwitchHeaderButton switchSelector="Apples"/>
-        <SwitchHeaderButton switchSelector="Kiwis"/>
+        <SwitchHeaderButton switchSelector="Mangoes" updateFunc={this.printUpdate}/>
+        <SwitchHeaderButton switchSelector="Apples" updateFunc={this.printUpdate}/>
+        <SwitchHeaderButton switchSelector="Kiwis" updateFunc={this.printUpdate}/>
         <SwitchableHeader />
       </div>
     );
