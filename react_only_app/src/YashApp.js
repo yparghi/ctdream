@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 
 
-class TestOtherComponent extends Component {
+class SwitchableHeader extends Component {
   render(){
     return(
       <div>
         <h3> Hello, World! </h3>
-        <SwitchHeaderButton switchSelector="Mangoes"/>
       </div>
     );
   }
@@ -31,7 +30,10 @@ class YashApp extends Component {
   render(){
     return(
       <div className="YashAppClass">
-          <TestOtherComponent/>
+        <SwitchHeaderButton switchSelector="Mangoes"/>
+        <SwitchHeaderButton switchSelector="Apples"/>
+        <SwitchHeaderButton switchSelector="Kiwis"/>
+        <SwitchableHeader />
       </div>
     );
   }
