@@ -11,5 +11,5 @@ class YashApp extends Component {
   }
 }
 
-// export default YashApp;
+export default YashApp;
 
