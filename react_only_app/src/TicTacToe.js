@@ -1,39 +1,22 @@
 import React, { Component } from "react";
 
 
-class SwitchableHeader extends Component {
-  render(){
-    return(
-      <div>
-        <h3>Hello, {this.props.displayName}!</h3>
-      </div>
-    );
-  }
-}
-
-class SwitchHeaderButton extends Component {
+class TtcButton extends Component {
 
   constructor(props) {
     super(props);
 
-    // TODO(Yash): Learn more why this is needed.
-    this.callParent = this.callParent.bind(this);
-  }
-
-  callParent(e) {
-    this.props.updateFunc(this.props.switchSelector);
+    this.state = {
+    }
   }
 
   render(){
     return(
-      <div>
-        <button onClick={this.callParent}>
-            Hello {this.props.switchSelector}!
-        </button>
-      </div>
+      <button height='20px' width='20px'>{this.props.squareIdx}</button>
     );
   }
 }
+
 
 class TicTacToeBoard extends Component {
 
@@ -41,27 +24,49 @@ class TicTacToeBoard extends Component {
     super(props);
 
     this.state = {
-        displayName: "Tic tac toe!",
+        squares: Array(9).fill(null),
     };
 
-    // TODO(Yash): Understand better why this is needed.
-    this.printUpdate = this.printUpdate.bind(this);
+    // TODO(Yash): Understand better why this bind call is needed.
+    this.boardButtonClicked = this.boardButtonClicked.bind(this);
   }
 
-  printUpdate(something) {
-    console.log("Button clicked!: ", something);
+  boardButtonClicked(squareIdx) {
+    console.log("Button clicked!: ", squareIdx);
+
+    // Update a copy of squares before registering that update in setState().
+    const newSquares = this.state.squares.slice();
+    newSquares[squareIdx] = 'X';
+
     this.setState(state => ({
-      displayName: something,
+      squares: newSquares,
     }));
   }
 
   render(){
     return(
-      <div className="TicTacToeBoardClass">
-        <SwitchHeaderButton switchSelector="Mangoes" updateFunc={this.printUpdate}/>
-        <SwitchHeaderButton switchSelector="Apples" updateFunc={this.printUpdate}/>
-        <SwitchHeaderButton switchSelector="Kiwis" updateFunc={this.printUpdate}/>
-        <SwitchableHeader displayName={this.state.displayName}/>
+      <div className="wholeBoard">
+
+      <div className="boardRow">
+        {/* TODO(Yash): Make this generic somehow*/}
+        <TtcButton
+            squareIdx={0}
+            onClick={() => this.boardButtonClicked(this.props.squareIdx)}
+        />
+        <TtcButton
+            squareIdx={1}
+            onClick={() => this.boardButtonClicked(this.props.squareIdx)}
+        />
+        <TtcButton
+            squareIdx={2}
+            onClick={() => this.boardButtonClicked(this.props.squareIdx)}
+        />
+      </div>
+      <div className="boardRow">
+      </div>
+      <div className="boardRow">
+      </div>
+
       </div>
     );
   }
