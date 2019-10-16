@@ -8,11 +8,19 @@ class TtcButton extends Component {
 
     this.state = {
     }
+
+    this.buttonClickedLocal = this.buttonClickedLocal.bind(this);
+  }
+
+  buttonClickedLocal(e) {
+    this.props.clickCall(this.props.squareIdx);
   }
 
   render(){
     return(
-      <button height='20px' width='20px'>{this.props.squareIdx}</button>
+      <button height='20px' width='20px' onClick={this.buttonClickedLocal}>
+          {this.props.squareIdx}
+      </button>
     );
   }
 }
@@ -51,15 +59,15 @@ class TicTacToeBoard extends Component {
         {/* TODO(Yash): Make this generic somehow*/}
         <TtcButton
             squareIdx={0}
-            onClick={() => this.boardButtonClicked(this.props.squareIdx)}
+            clickCall={this.boardButtonClicked}
         />
         <TtcButton
             squareIdx={1}
-            onClick={() => this.boardButtonClicked(this.props.squareIdx)}
+            clickCall={this.boardButtonClicked}
         />
         <TtcButton
             squareIdx={2}
-            onClick={() => this.boardButtonClicked(this.props.squareIdx)}
+            clickCall={this.boardButtonClicked}
         />
       </div>
       <div className="boardRow">
