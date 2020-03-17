@@ -1,4 +1,8 @@
 {
-  "names": [ "Yash", "Bart", "Lisa", "Maggie" ]
+  "people": [
+    { "user_id": 1, "name": "Yash", "hobby": "guitar" },
+    { "user_id": 2, "name": "Bart", "hobby": "anarchy" },
+    { "user_id": 3, "name": "Lisa", "hobby": "saxophone" }
+  ]
 }
 
